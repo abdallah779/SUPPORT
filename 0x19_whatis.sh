@@ -1,2 +1,3 @@
 #!/bin/bash
-cal
+cal --help
+
