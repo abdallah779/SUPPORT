@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+void main(){
+	int n;
+	int ans;
+	int key;
+	cout << " enter the number of letters you will enter" << '\n';
+	cin >> n;
+	char* text = new char[n];
+	cout << "enter 1 for Encryption and 2 for Decryption :" << '\n';
+	cin >> ans;
+	if (ans == 1) {
+		cout << "enter the key" << '\n';
+		cin >> key;
+		cout << "enter the plain text" << '\n';
+		for (int i = 0; i < n; i++) {
+			cin >> text[i];
+			if (text[i] == ' ')
+				continue;
+			else if (isalpha(text[i])) {
+				char base = isupper(text[i]) ? 'A' : 'a';
+				text[i] = ((text[i] - base + key) % 26 + 26) % 26 + base;
+			}
+		}
+		cout << "Your CipherText is " << '\n';
+		for (int i = 0; i < n; i++) {
+			cout << text[i];
+		}
+	}
+	else if (ans == 2) {
+		cout << "enter the key" << '\n';
+		cin >> key;
+		cout << "enter the Ciphertext" << '\n';
+		for (int i = 0; i < n; i++) {
+			cin >> text[i];
+			if (text[i] == ' ')
+				continue;
+			else if (isalpha(text[i])) {
+				char base = isupper(text[i]) ? 'A' : 'a';
+				text[i] = ((text[i] - base - key + 26) % 26 + 26) % 26 + base;
+			}
+		}
+		cout << "Your PlainText is " << '\n';
+		for (int i = 0; i < n; i++) {
+			cout << text[i];
+		}
+	}
+}
